@@ -1,4 +1,6 @@
-GET http://localhost:3000/menu/2
+###
+
+GET http://localhost:3000/menu/1
 
 ###
 
@@ -9,3 +11,14 @@ Content-Type: application/json
   "title": "test",
   "id": 5
 }
+
+###
+
+PUT http://localhost:3000/user
+
+###
+
+DELETE http://localhost:3000/deleteuser
+
+###
+GET http://localhost:3000/static
