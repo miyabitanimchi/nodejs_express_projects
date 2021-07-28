@@ -1,10 +1,12 @@
 import Express from 'express';
 import Menu from "./menu.js";
+import fs from 'fs';
 
 const app = Express();
 const port = 3000;
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }))
+console.log(app);
 
 const mid = (req, res, next) => {
   console.log(req.query);
@@ -12,19 +14,21 @@ const mid = (req, res, next) => {
   next();
 }
 
-
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World')
-// });
+app.get('/htmlfile', (req, res) => {
+  fs.readFile("fstest.html", (err, data) => {
+    if (err) console.log(err);
+    res.writeHead(200, { 'Content-type': 'text/html' });
+    res.write(data);
+    res.end();
+    // res.send(data.toString());
+  })
+});
 
 app.get('/menu/:id', mid, (req, res) => {
-  // res.send('Welcome To Our Cafe!');
   res.json(Menu.find((menu) => {
     return + req.params.id === menu.id
   }));
   res.send(req.params.id);
-
 })
 
 app.post("/add", (req, res) => {
