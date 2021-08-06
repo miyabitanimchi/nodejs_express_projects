@@ -1,0 +1,27 @@
+{
+  "name": "@miyabi/cli_app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "bin": {
+    "@miyabi/app": "bin/cli-app",
+    "cli-app": "bin/cli-app"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "cli",
+    "cli-app"
+  ],
+  "author": "MIYABI TANIMICHI",
+  "license": "ISC",
+  "description": "A CLI application for a school assignment",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.12"
+  }
+}
