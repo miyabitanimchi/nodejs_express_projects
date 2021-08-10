@@ -70,7 +70,7 @@ const showHostname = (arg) => {
 
 // show ip address
 const showIPAddress = (arg) => {
-  if (arg === "-ipaddress") console.log(os.networkInterfaces().en0[3].address);
+  if (arg === "-ip") console.log(os.networkInterfaces().en0[3].address);
 }
 
 // showArch(process.argv[2]);
