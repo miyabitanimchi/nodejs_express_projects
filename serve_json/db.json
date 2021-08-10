@@ -1,0 +1,20 @@
+{
+  "person1": {
+    "id": "1",
+    "name": "Miyabi",
+    "occupation": "student",
+    "location": "Canada"
+  },
+  "person2": {
+    "id": "2",
+    "name": "Rachel",
+    "occupation": "governor",
+    "location": "The United States"
+  },
+  "person3": {
+    "id": "3",
+    "name": "Steven",
+    "occupation": "Software Engineer",
+    "location": "Japan"
+  }
+}
