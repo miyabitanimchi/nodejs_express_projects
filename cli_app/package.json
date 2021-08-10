@@ -22,6 +22,7 @@
   "description": "A CLI application for a school assignment",
   "dependencies": {
     "esm": "^3.2.25",
+    "hddserial": "0.0.7",
     "nodemon": "^2.0.12"
   }
 }
