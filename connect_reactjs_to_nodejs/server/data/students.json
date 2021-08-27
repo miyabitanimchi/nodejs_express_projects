@@ -1,1 +1,4 @@
-[{"name":"Miyabi","country":"Japan"},{"name":"Koala","country":"Australia"},{"name":"scss","country":"vdvdbd"}]
+[
+  { "name": "Miyabi", "country": "Japan" },
+  { "name": "Koala", "country": "Australia" }
+]
