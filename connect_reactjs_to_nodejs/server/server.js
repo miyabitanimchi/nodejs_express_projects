@@ -33,7 +33,7 @@ app.post("/post-new-student-data", async (req, res) => {
       if (err) throw err;
       const updatedStudentsData = JSON.parse(currentData);
       updatedStudentsData.push(newStudentData);
-      fs.writeFileSync(
+      fs.writeFile(
         path.join(__dirname, "data", "students.json"),
         // JSON.stringify() JS Object → json string
         JSON.stringify(updatedStudentsData),
@@ -47,20 +47,20 @@ app.post("/post-new-student-data", async (req, res) => {
   console.log(
     `new student data added! Name: ${newStudentData.name} Country: ${newStudentData.country}`
   );
+  res.redirect("/home");
 });
 
 // create a routing with the get HTTP request method to respond to a client request
 // this time it responds with data from JSON
 app.get("/home", cors(), async (req, res) => {
-  const studentsData = fs.readFileSync(
-    path.join(__dirname, "data", "students.json"),
-    (err, data) => {
-      if (err) throw err;
-      // JSON.parse() json string → JS Object
-      return JSON.parse(data);
-    }
-  );
-  res.send(studentsData);
+  try {
+    const studentsData = fs.readFileSync(
+      path.join(__dirname, "data", "students.json")
+    );
+    res.send(JSON.parse(studentsData));
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(port, () => {
