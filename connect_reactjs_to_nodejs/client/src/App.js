@@ -6,13 +6,12 @@ function App() {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
   const [studentsData, setstudentsData] = useState([]);
-  const [isUpdated, setIsUpdated] = useState(false);
+  const [isListUpdated, setIsListUpdated] = useState(false);
 
   useEffect(() => {
-    setIsUpdated(false);
     const callAPI = async () => {
       try {
-        const res = await axios.get("/home");
+        const res = await axios.get("http://localhost:4000/home");
         setstudentsData(res.data);
         console.log(res.data);
       } catch (err) {
@@ -20,14 +19,15 @@ function App() {
       }
     };
     callAPI();
-  }, []);
+  }, [isListUpdated]);
 
   const postNewStudentData = async (e) => {
     e.preventDefault();
     try {
       await axios.post(
-        "/post-new-student-data",
+        "http://localhost:4000/post-new-student-data",
         {
+          id: Date.now(), // random id
           name: name,
           country: country,
         },
@@ -38,16 +38,12 @@ function App() {
           },
         }
       );
+      setIsListUpdated((prevState) => !prevState);
+      setName("");
+      setCountry("");
     } catch (err) {
       console.log(err);
     }
-    setName("");
-    setCountry("");
-    setIsUpdated(true);
-  };
-
-  const updateData = () => {
-    window.location.reload();
   };
   return (
     <div className="App">
@@ -67,7 +63,7 @@ function App() {
           <button type="submit">Add Student</button>
         </form>
         <div>
-          {studentsData.length !== 0 && !isUpdated ? (
+          {studentsData.length !== 0 &&
             studentsData.map((student, index) => {
               return (
                 <div key={index}>
@@ -77,13 +73,7 @@ function App() {
                   <p></p>
                 </div>
               );
-            })
-          ) : (
-            <>
-              <p>new student data added!</p>
-              <button onClick={() => updateData()}>Update List</button>
-            </>
-          )}
+            })}
         </div>
       </header>
     </div>
